@@ -47,6 +47,9 @@ Usage of zlb:
 # 转发docker接口到本地网络2375,限制仅允许x.x.x.x/32访问
 mlb -listen=0.0.0.0:2375 -server=//var/run/docker.sock -server_type=unix -src_idle_timeout=0 -dst_idle_timeout=300 -source=x.x.x.x/32
 ```
-
+```
+# 负载均衡后端web服务,并进行链路跟踪
+mlb -listen=0.0.0.0:8080 -server=192.168.1.10:8080,192.168.1.11:8080 -server_type=tcp -src_idle_timeout=0 -dst_idle_timeout=300 -mode=hash
+```
 ## QQ讨论群
 604869641
