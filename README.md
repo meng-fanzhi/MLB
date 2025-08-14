@@ -1,6 +1,6 @@
-提供基于4层网络负载均衡转发服务，提供unix_socket,tcp,udp协议的负载均衡服务，并提供基于轮询策略的负载均衡及接入白名单控制等功能；
+> 提供基于4层网络负载均衡转发服务，提供unix_socket,tcp,udp协议的负载均衡服务，并提供基于轮询策略的负载均衡及接入白名单控制等功能；
 
-使用说明：
+## 使用说明：
 ```
 Usage of zlb:
 -buffer int
@@ -40,3 +40,13 @@ Usage of zlb:
 -udplisten string
 -udplisten=0.0.0.0:65534 指定udp转发监听端口，用于接收服务端返回数据 (default “0.0.0.0:65534”)
 ```
+
+## 举例：
+- 将通过转发将docker的unix转换为TCP端口：
+```
+# 转发docker接口到本地网络2375,限制仅允许x.x.x.x/32访问
+mlb -listen=0.0.0.0:2375 -server=//var/run/docker.sock -server_type=unix -src_idle_timeout=0 -dst_idle_timeout=300 -source=x.x.x.x/32
+```
+
+## QQ讨论群
+604869641
